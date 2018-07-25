@@ -1,0 +1,97 @@
+
+.home {
+    .main-content {
+        @extend .container;
+        margin: 0 0 0 auto;
+        display: flex;
+        flex-direction: column;
+
+        @include breakpoint(md) {
+            flex-direction: row;
+        }
+
+        @include breakpoint(sm-down) {
+            overflow-x: hidden;
+        }
+
+        @include breakpoint(xl) {
+            max-width: 100%;
+
+            &-left {
+                padding-left: 25vw !important;
+            }
+        }
+
+        &-left {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            width: 50%;
+            flex-direction: column;
+            font-weight: 100;
+            font-size: px2rem(18);
+
+            p {
+                padding-right: 20px;
+                max-width: px2rem(250);
+            }
+
+            h1 {
+                font-size: px2rem(100);
+                max-width: px2rem(350);
+            }
+
+            @include breakpoint(lg) {
+                padding-left: px2rem(20);
+                padding-right: px2rem(40);
+            }
+
+            @include breakpoint(sm-down) {
+                justify-content: center;
+                width: 100%;
+                align-items: center;
+                padding-bottom: px2rem(40);
+
+                h1 {
+                    text-align: center;
+                    font-size: px2rem(60);
+                }
+
+                p {
+                    padding: 0 px2rem(40);
+                    text-align: center;
+                    max-width: px2rem(300);
+                }
+            }
+        }
+
+        &-right {
+            display: flex;
+            align-items: flex-end;
+            justify-content: center;
+            flex-grow: 1;
+            background-image: url('/assets/images/restaurant.jpg');
+            background-position: left;
+            background-size: cover;
+
+            img {
+                margin-bottom: px2rem(20);
+                margin-left: px2rem(20);
+            }
+
+            @include breakpoint(xs) {
+                border-radius: 4px 4px 0 0;
+                width: 90%;
+                margin: 0 auto;
+                img {
+                    max-width: 125vw;
+                    margin-left: -5px;
+                }
+            }
+
+            @include breakpoint(sm) {
+                border-radius: 100% 0 0 0;
+            }
+        }
+    }
+}

@@ -1,0 +1,15 @@
+/** Mendies styles **/
+@import 'colors';
+@import 'variables';
+@import 'button';
+@import 'mixins/px2rem';
+@import 'grid/grid';
+@import 'layout';
+@import 'typography';
+@import 'form';
+@import '../Cart/cart';
+@import '../Card/card';
+@import '../Header/header';
+@import '../Footer/footer';
+@import '../Pages/Home/style';
+@import '../Pages/ProductDetail/style';

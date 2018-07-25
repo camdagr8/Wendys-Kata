@@ -1,0 +1,10 @@
+// Root font-size:
+$root-font: 16px;
+
+$header-height: 80px;
+$footer-height: 100px;
+$content-offset: $footer-height + $header-height;
+
+
+// Grid grid-variables
+@import "grid/grid-variables";

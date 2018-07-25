@@ -1,0 +1,96 @@
+.main-header {
+    @extend .container;
+    @extend .px-24;
+    height: px2rem($header-height);
+    min-height: px2rem($header-height);
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    min-width: px2rem(320);
+
+    &-nav {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        @include breakpoint(sm) {
+            justify-content: flex-end;
+        }
+
+        @include breakpoint(xs) {
+            margin-right: px2rem(-24);
+        }
+
+        &-link {
+            &:not(:last-child) {
+                margin-right: px2rem(10);
+            }
+            &:not(:first-child) {
+                margin-left: px2rem(10);
+            }
+            a {
+                @extend .py-12;
+                @extend .px-md-24;
+                @extend .px-sm-12;
+
+                display: inline-flex;
+                text-align: center;
+                opacity: 0.5;
+                transition: opacity .25s ease-in-out;
+                text-decoration: none;
+                font-weight: 100;
+
+                &.active,
+                &:hover {
+                    opacity: 1;
+                }
+
+                &.btn-primary-pill,
+                &.btn-secondary-pill,
+                &.btn-default-pill {
+                    opacity: 1;
+                    //font-weight: bold !important;
+                }
+            }
+        }
+    }
+
+    &-logo {
+
+        a {
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+
+            span {
+                opacity: 0.5;
+                margin-left: px2rem(10);
+                transition: opacity .25s ease-in-out;
+                display: none;
+
+                @include breakpoint(sm) {
+                    display: inline-block;
+                }
+            }
+
+            &:hover {
+                text-decoration: none;
+
+                * {
+                    opacity: 1;
+                }
+            }
+        }
+
+        img {
+            height: 48px;
+
+            @include breakpoint(xs) {
+                height: 32px;
+            }
+        }
+
+
+    }
+}
