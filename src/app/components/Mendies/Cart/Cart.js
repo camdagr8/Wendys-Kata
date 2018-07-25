@@ -59,12 +59,12 @@ export default class Cart extends Component {
                     <ul className={'cart-items'}>
                         {(items.length < 1) ? (
                             <li className={'cart-item'}>
+                                {/* no cart items */}
                                 <div className={'px-20'} style={{width: '100%'}}>
                                     <a className={'btn-primary-pill btn-block'} href={'/categories'}>Start your order</a>
                                 </div>
                             </li>
-                        ) : null }
-                        {items.map((item, i) => {
+                        ) : items.map((item, i) => {
                             let { image, name, category, id } = item;
 
                             return (
