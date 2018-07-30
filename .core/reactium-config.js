@@ -6,6 +6,6 @@
  * @type {Object}
  */
 module.exports = {
-    version: '2.3.2',
+    version: '2.3.4',
     semver: '2.3.x'
 };

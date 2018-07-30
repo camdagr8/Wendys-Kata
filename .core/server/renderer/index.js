@@ -21,18 +21,26 @@ const styles = (req, res) => {
     if (isToolkit(req.path)) {
         sarr.push('/assets/style/toolkit.css');
     } else {
-        let publicDir = process.env.PUBLIC_DIRECTORY || path.resolve(process.cwd(), 'public');
-        let styleDir  = path.normalize(path.join(publicDir, '/assets/style'));
-        let exclude   = ['toolkit.css'];
+        let publicDir =
+            process.env.PUBLIC_DIRECTORY ||
+            path.resolve(process.cwd(), 'public');
+        let styleDir = path.normalize(path.join(publicDir, '/assets/style'));
+        let exclude = ['toolkit.css'];
 
-        fs.readdirSync(styleDir).forEach((item) => {
-            if (exclude.indexOf(item) >= 0) { return; }
+        fs.readdirSync(styleDir).forEach(item => {
+            if (exclude.indexOf(item) >= 0) {
+                return;
+            }
             let p = path.normalize(path.join(styleDir, item));
-            if (fs.statSync(p).isFile()) { sarr.push(p.split(publicDir).join('')); }
+            if (fs.statSync(p).isFile()) {
+                sarr.push(p.split(publicDir).join(''));
+            }
         });
     }
 
-    let styles = sarr.map((item) => { return `<link rel="stylesheet" href="${item}">`; });
+    let styles = sarr.map(item => {
+        return `<link rel="stylesheet" href="${item}">`;
+    });
 
     return styles.join('\n\t');
 };
@@ -101,9 +109,10 @@ export default (req, res, context) => {
             template = localTemplate.template;
 
             // Accept local styles
-            req.styles = (op.has(localTemplate, 'styles') && !isToolkit(req.path))
-                ? localTemplate.styles(req)
-                : req.styles;
+            req.styles =
+                op.has(localTemplate, 'styles') && !isToolkit(req.path)
+                    ? localTemplate.styles(req)
+                    : req.styles;
         }
     }
 

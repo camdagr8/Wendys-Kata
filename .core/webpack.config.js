@@ -85,7 +85,7 @@ module.exports = (gulpConfig, type = 'app') => {
                         /.jpg$/,
                         /.gif$/,
                         /.ttf$/,
-                        /.woff2$/,
+                        /.woff$/,
                     ],
                     use: [
                         {
