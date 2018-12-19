@@ -1,4 +1,3 @@
-
 /**
  * -----------------------------------------------------------------------------
  * Imports
@@ -12,87 +11,75 @@ import Card from 'components/Mendies/Card';
 import _ from 'underscore';
 import op from 'object-path';
 
-
 /**
  * -----------------------------------------------------------------------------
  * React Component: ProductDetail
  * -----------------------------------------------------------------------------
  */
 
+const noop = () => {};
+
 export default class ProductDetail extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            ...this.props,
-        };
-    }
-
-    componentDidMount() {
-
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState(prevState => ({
-            ...prevState,
-            ...nextProps,
-        }));
-    }
-
     onOrderClick(e) {
-        if (typeof this.state.add === 'function') {
-            let { product, category } = e.currentTarget.dataset;
-            this.state.add({ product, category });
-        }
+        const { add = noop } = this.props;
+        const { product, category } = e.currentTarget.dataset;
+        add({ product, category });
     }
 
     render404({ title, className }) {
         return (
             <Template title={title} className={className}>
-                <main className={'main-content px-20'} role='main'>
-                    <h1 className={'mb-10 mt-md-20 mt-lg-20 center left-md'}>404 <span className={'px-10'}>/</span> Page not found </h1>
+                <main className={'main-content px-20'} role="main">
+                    <h1 className={'mb-10 mt-md-20 mt-lg-20 center left-md'}>
+                        404 <span className={'px-10'}>/</span> Page not found{' '}
+                    </h1>
                 </main>
             </Template>
         );
     }
 
     render() {
-
-        let { className, category, product } = this.state;
+        let { className, category, product } = this.props;
         category = Number(category);
         product = Number(product);
 
         if (category === 0 || isNaN(category)) {
-            return this.render404(this.state);
+            return this.render404(this.props);
         }
 
         if (product === 0 || isNaN(product)) {
-            return this.render404(this.state);
+            return this.render404(this.props);
         }
 
-        let cat = _.findWhere(products, { id: category });
+        const cat = _.findWhere(products, { id: category });
         if (!cat) {
-            return this.render404(this.state);
+            return this.render404(this.props);
         }
 
-        let prod = _.findWhere(cat.menuItems, { id: product });
+        const prod = _.findWhere(cat.menuItems, { id: product });
         if (!prod) {
-            return this.render404(this.state);
+            return this.render404(this.props);
         }
 
-        let { name:categoryName } = cat;
-        let title =`${categoryName} | Mendie's`;
+        const { name: categoryName } = cat;
+        const title = `${categoryName} | Mendie's`;
 
         return (
             <Template title={title} className={className}>
-                <main className={'container px-20'} role='main'>
+                <main className={'container px-20'} role="main">
                     <h1 className={'mb-10 mt-md-20 mt-lg-20'}>
                         <div className={'row center-xs center-sm start-md end'}>
-                            <Link to={'/categories'} title={'go back to the main menu'}>Menu</Link>
+                            <Link
+                                to={'/categories'}
+                                title={'go back to the main menu'}
+                            >
+                                Menu
+                            </Link>
                             <span className={'px-10'}>/</span>
                             <Link
                                 to={`/category/${category}`}
                                 className={'mb-6'}
-                                style={{fontSize: '.5em'}}
+                                style={{ fontSize: '.5em' }}
                                 title={`${categoryName} menu items`}
                                 tabIndex={0}
                             >
@@ -105,7 +92,11 @@ export default class ProductDetail extends Component {
                     <div className={'product-hero-wrapper'}>
                         <div className={'product-hero-left'}>
                             <h2>{prod.name}</h2>
-                            <p>{prod.description}<br /><small>{prod.calories}</small></p>
+                            <p>
+                                {prod.description}
+                                <br />
+                                <small>{prod.calories}</small>
+                            </p>
                             <button
                                 type={'button'}
                                 className={'btn-primary-lg-pill'}
@@ -125,5 +116,3 @@ export default class ProductDetail extends Component {
         );
     }
 }
-
-ProductDetail.defaultProps = {};

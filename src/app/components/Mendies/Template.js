@@ -1,4 +1,3 @@
-
 /**
  * -----------------------------------------------------------------------------
  * Imports
@@ -10,7 +9,6 @@ import Footer from 'components/Mendies/Footer';
 import Cart from 'components/Mendies/Cart';
 import { Helmet } from 'react-helmet';
 
-
 /**
  * -----------------------------------------------------------------------------
  * React Component: Template
@@ -18,20 +16,8 @@ import { Helmet } from 'react-helmet';
  */
 
 export default class Template extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { ...this.props };
-    }
-
-    componentWillReceiveProps(nextProps) {
-        this.setState(prevState => ({
-            ...prevState,
-            ...nextProps,
-        }));
-    }
-
     render() {
-        let { className, children, title } = this.state;
+        let { className, children, title } = this.props;
         return (
             <Fragment>
                 <Helmet>
@@ -52,5 +38,5 @@ export default class Template extends Component {
 
 Template.defaultProps = {
     title: "Mendie's Burgers",
-    className: 'home',
+    className: 'home'
 };
